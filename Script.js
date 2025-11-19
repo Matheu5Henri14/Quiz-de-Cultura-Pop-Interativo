@@ -1,7 +1,7 @@
 document.getElementById("botao").addEventListener("click", function () {
 
     let pontos = 0;
-    let total = 10; 
+    let total = 10;
 
     const respostasCorretas = {
         q1: "0",
@@ -23,40 +23,30 @@ document.getElementById("botao").addEventListener("click", function () {
     perguntas.forEach((q) => {
         const selecionada = document.querySelector(`input[name="${q}"]:checked`);
 
-        
         if (!selecionada) {
             todasRespondidas = false;
             return;
         }
 
-        
         const label = selecionada.nextElementSibling;
 
         if (selecionada.value === respostasCorretas[q]) {
             pontos++;
             label.classList.add("text-success", "fw-bold");
         } else {
-            label.classList.add("text-danger", "fw-bold"); 
+            label.classList.add("text-danger", "fw-bold");
         }
     });
 
-    const resultadoDiv = document.getElementById("resultado");
-
+    // Validação: todas as perguntas respondidas?
     if (!todasRespondidas) {
+        const resultadoDiv = document.getElementById("resultado");
         resultadoDiv.className = "alert alert-warning";
         resultadoDiv.innerHTML = "Atenção! Responda todas as perguntas antes de enviar.";
         resultadoDiv.classList.remove("d-none");
         return;
     }
 
-    
-    resultadoDiv.classList.remove("d-none");
-
-    if (pontos === total) {
-        resultadoDiv.className = "alert alert-success";
-        resultadoDiv.innerHTML = `Parabéns! Você acertou <strong>${pontos}</strong> de <strong>${total}</strong> perguntas!`;
-    } else {
-        resultadoDiv.className = "alert alert-info";
-        resultadoDiv.innerHTML = `Você fez <strong>${pontos}</strong> de <strong>${total}</strong> pontos.`;
-    }
+    // ✔️ REDIRECIONAR PARA A PÁGINA DE RESULTADO COM A PONTUAÇÃO
+    window.location.href = `resultado.html?score=${pontos}&total=${total}`;
 });
