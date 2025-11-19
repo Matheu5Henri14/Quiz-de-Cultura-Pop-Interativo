@@ -38,7 +38,7 @@ document.getElementById("botao").addEventListener("click", function () {
         }
     });
 
-    // Validação: todas as perguntas respondidas?
+ 
     if (!todasRespondidas) {
         const resultadoDiv = document.getElementById("resultado");
         resultadoDiv.className = "alert alert-warning";
@@ -47,6 +47,6 @@ document.getElementById("botao").addEventListener("click", function () {
         return;
     }
 
-    // ✔️ REDIRECIONAR PARA A PÁGINA DE RESULTADO COM A PONTUAÇÃO
+  
     window.location.href = `resultado.html?score=${pontos}&total=${total}`;
 });
